@@ -2,7 +2,7 @@ package com.rays.autowire.byname;
 
 import org.springframework.stereotype.Component;
 
-@Component("pp")
+@Component("userDAOImplN")
 public class UserDAOImpl implements UserDAOInt{
 
 	@Override

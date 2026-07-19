@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class UserService {
 
 	@Autowired
-	@Qualifier("pp")
+	@Qualifier("userDAOImplN")
 	private UserDAOInt userDao;
 	
 	public void add() {

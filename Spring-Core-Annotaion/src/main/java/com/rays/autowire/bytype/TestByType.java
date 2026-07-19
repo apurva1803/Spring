@@ -14,5 +14,8 @@ public class TestByType {
 		UserService s = context.getBean("userServiceT",UserService.class);
 		
 		s.add();
+
 	}
 }
+
+

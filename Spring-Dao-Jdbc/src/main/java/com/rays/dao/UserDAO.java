@@ -27,5 +27,27 @@ public class UserDAO {
 		return dto.getId();
 
 	}
+	
+	public void update(UserDTO dto) {
+
+		String sql = "update st_user set firstName = ?, lastName = ?, login = ?, password = ? where id = ?";
+		
+		int i = jdbcTemplate.update(sql, dto.getFirstName(), dto.getLastName(), dto.getLogin(), dto.getPassword(),
+				dto.getId());
+		
+		System.out.println("record updated: " + i);
+	}
+
+	
+	
+	public void delete(int id) {
+
+		String sql = "delete from st_user where id = ?";
+		
+		int i = jdbcTemplate.update(sql, id);
+		
+		System.out.println("record deleted = " + i);
+
+	}
 
 }

@@ -20,24 +20,45 @@ public class TestUser {
 
 		TestUser test = context.getBean("testUser", TestUser.class);
 
-		test.testAdd();
-
+		//test.testAdd();
+		//test.testUpdate();
+		test.testDelete();
+		
 	}
 
 	private void testAdd() {
 
 		UserDTO dto = new UserDTO();
 
-		dto.setId(1);
-		dto.setFirstName("Apurva");
-		dto.setLastName("Deshmukh");
-		dto.setLogin("apurva@gmail.com");
-		dto.setPassword("pass123");
+		dto.setId(3);
+		dto.setFirstName("Shyam");
+		dto.setLastName("Sharma");
+		dto.setLogin("ram@gmail.com");
+		dto.setPassword("ram123");
 
 		int id = service.add(dto);
 
 		System.out.println("data inserted successfully at id: " + id);
 
 	}
+	
+	private void testUpdate() {
+
+		UserDTO dto = new UserDTO();
+
+		dto.setId(2);
+		dto.setFirstName("Ram");
+		dto.setLastName("Sharma");
+		dto.setLogin("ram@gmail.com");
+		dto.setPassword("ram123");
+
+		service.update(dto);
+
+	}
+	
+	private void testDelete() {
+		service.delete(3);
+	}
+
 
 }

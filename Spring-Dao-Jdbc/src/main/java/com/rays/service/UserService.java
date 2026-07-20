@@ -15,5 +15,15 @@ public class UserService {
 	public int add(UserDTO dto) {
 		return dao.add(dto);
 	}
+	
+	public void update(UserDTO dto) {
+		dao.update(dto);
+
+	}
+
+	public void delete(int id) {
+		dao.delete(id);
+	}
+
 
 }

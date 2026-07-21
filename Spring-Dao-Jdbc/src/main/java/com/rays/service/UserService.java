@@ -1,5 +1,7 @@
 package com.rays.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,16 @@ public class UserService {
 	@Autowired
 	UserDAO dao;
 
-	public int add(UserDTO dto) {
-		return dao.add(dto);
+	public long add(UserDTO dto) {
+		UserDTO existDto = findByLogin(dto.getLogin());
+
+		if (existDto != null) {
+			throw new RuntimeException("login already exist");
+		}
+
+		long i = dao.add(dto);
+		
+		return i;
 	}
 	
 	public void update(UserDTO dto) {
@@ -26,4 +36,19 @@ public class UserService {
 	}
 
 
+	public UserDTO findByPk(long id) {
+		return dao.findByPk(id);
+	}
+
+	public UserDTO findByLogin(String login) {
+		return dao.findByLogin(login);
+	}
+
+	public UserDTO authenticate(String login, String password) {
+		return dao.authenticate(login, password);
+	}
+
+	public List<UserDTO> search(UserDTO dto, int pageNo, int pageSize) {
+		return dao.search(dto, pageNo, pageSize);
+	}
 }

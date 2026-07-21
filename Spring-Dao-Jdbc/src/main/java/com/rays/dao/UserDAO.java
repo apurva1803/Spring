@@ -91,19 +91,19 @@ public class UserDAO {
 		return dto;
 	}
 	
-	public UserDTO authenticate(String login, String password) {
-
-		UserDTO dto = null;
-
-		String sql = "select * from st_user where login = ? and password = ?";
-
-		Object[] param = { login, password };
-
-		dto = jdbcTemplate.queryForObject(sql, param, new UserMapper());
-
-		return dto;
-
-	}
+//	public UserDTO authenticate(String login, String password) {
+//
+//		UserDTO dto = null;
+//
+//		String sql = "select * from st_user where login = ? and password = ?";
+//
+//		Object[] param = { login, password };
+//
+//		dto = jdbcTemplate.queryForObject(sql, param, new UserMapper());
+//
+//		return dto;
+//
+//	}
 	
 	public List<UserDTO> search(UserDTO dto, int pageNo, int pageSize){
 		

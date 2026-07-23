@@ -11,13 +11,11 @@ import com.rays.dao.UserDAO;
 import com.rays.dto.UserDTO;
 
 @Service
-@Transactional
 public class UserService {
 
 	@Autowired
 	UserDAO dao;
 	
-	@Transactional(propagation = Propagation.REQUIRED)
 	public void save(UserDTO dto) {
 		
 		if(dto.getId()>0) {
@@ -28,27 +26,22 @@ public class UserService {
 		dao.add(dto);
 	}
 	
-	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(int id) {
 		dao.delete(id);
 	}
 	
-	@Transactional(readOnly = true)
 	public UserDTO findById(int id) {
 		return dao.findByPk(id);
 	}
 	
-	@Transactional(readOnly = true)
 	public UserDTO findByLogin(String login) {
 		return dao.findByLogin(login);
 	}
 
-	@Transactional(readOnly = true)
 	public UserDTO authenticate(String login, String password) {
 		return dao.authenticate(login, password);
 	}
 
-	@Transactional(readOnly = true)
 	public List<UserDTO> search(UserDTO dto, int pageNo, int pageSize) {
 		return dao.search(dto, pageNo, pageSize);
 	}

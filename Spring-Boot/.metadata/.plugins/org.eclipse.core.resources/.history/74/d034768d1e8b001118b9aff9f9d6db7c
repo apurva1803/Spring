@@ -13,10 +13,6 @@ import com.rays.dto.RoleDTO;
 import com.rays.form.RoleForm;
 import com.rays.service.RoleService;
 
-
-//	postman
-//	body -> raw -> format json for save and update method
-
 @RestController
 @RequestMapping("Role")
 public class RoleCtl {

@@ -13,10 +13,6 @@ import com.rays.dto.RoleDTO;
 import com.rays.form.RoleForm;
 import com.rays.service.RoleService;
 
-
-//	postman
-//	body -> raw -> format json for save and update method
-
 @RestController
 @RequestMapping("Role")
 public class RoleCtl {
@@ -39,7 +35,6 @@ public class RoleCtl {
 		res.setSuccess(true);
 
 		return res;
-		
 	}
 	
 	// http://localhost:8080/Role/update
@@ -57,10 +52,9 @@ public class RoleCtl {
 			res.setSuccess(true);
 
 			return res;
-			
 		}
 
-		// http://localhost:8080/Role/delete/id and multilple ids like id,id
+		// http://localhost:8080/Role/delete/id
 		@GetMapping("delete/{ids}")
 		public ORSResponse delete(@PathVariable long[] ids) {
 
@@ -73,7 +67,6 @@ public class RoleCtl {
 			}
 
 			return res;
-			
 		}
 
 		// http://localhost:8080/Role/get/id
@@ -90,7 +83,6 @@ public class RoleCtl {
 			}
 
 			return res;
-			
 		}
 
 }

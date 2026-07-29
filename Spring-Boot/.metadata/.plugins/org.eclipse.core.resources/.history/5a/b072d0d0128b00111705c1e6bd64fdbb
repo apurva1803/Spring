@@ -1,0 +1,23 @@
+package com.rays.dao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+
+import com.rays.dto.RoleDTO;
+
+@Repository
+public class RoleDAO {
+
+	@PersistenceContext
+	EntityManager entityManager;
+	
+	public long add(RoleDTO dto) {
+
+		entityManager.persist(dto); // persist method to insert
+
+		return dto.getId();
+
+	}
+}

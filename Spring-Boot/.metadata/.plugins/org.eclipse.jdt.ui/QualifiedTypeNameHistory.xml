@@ -3,7 +3,6 @@
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
-    <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.rays.dto.TestDTO"/>
     <fullyQualifiedTypeName name="javax.persistence.MappedSuperclass"/>
@@ -30,4 +29,7 @@
     <fullyQualifiedTypeName name="com.rays.form.RoleForm"/>
     <fullyQualifiedTypeName name="com.rays.common.ORSResponse"/>
     <fullyQualifiedTypeName name="com.rays.dto.RoleDTO"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.NotEmpty"/>
 </qualifiedTypeNameHistroy>

@@ -1,6 +1,10 @@
 package com.rays.ctl;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,84 +17,88 @@ import com.rays.dto.RoleDTO;
 import com.rays.form.RoleForm;
 import com.rays.service.RoleService;
 
-
-//	postman
-//	body -> raw -> format json for save and update method
-
 @RestController
-@RequestMapping("Role")
-public class RoleCtl {
+@RequestMapping(value = "Role")
+public class RoleCtl extends BaseCtl {
 
 	@Autowired
 	RoleService service;
-	
+
 	// http://localhost:8080/Role/save
 	@PostMapping("save")
-	public ORSResponse save(@RequestBody RoleForm form) {
-		
+	public ORSResponse save(@RequestBody @Validated RoleForm form, BindingResult bindingResult) {
+
 		ORSResponse res = new ORSResponse();
-		
+
+		res = validate(bindingResult);
+
+		if (res.isSuccess() == false) {
+			return res;
+		}
+
 		RoleDTO dto = (RoleDTO) form.getDto();
-		
+
 		service.save(dto);
-		
+
 		res.addMessage("role saved successfully");
 		res.addData(dto);
 		res.setSuccess(true);
 
 		return res;
-		
 	}
-	
+
 	// http://localhost:8080/Role/update
-		@PostMapping("update")
-		public ORSResponse update(@RequestBody RoleForm form) {
+	@PostMapping("update")
+	public ORSResponse update(@RequestBody @Validated RoleForm form, BindingResult bindingResult) {
 
-			ORSResponse res = new ORSResponse();
+		ORSResponse res = new ORSResponse();
+		
+		res = validate(bindingResult);
 
-			RoleDTO dto = (RoleDTO) form.getDto();
+		if (res.isSuccess() == false) {
+			return res;
+		}
 
-			service.save(dto);
+		RoleDTO dto = (RoleDTO) form.getDto();
 
-			res.addMessage("role updated successfully");
-			res.addData(dto);
+		service.save(dto);
+
+		res.addMessage("role updated successfully");
+		res.addData(dto);
+		res.setSuccess(true);
+
+		return res;
+	}
+
+	// http://localhost:8080/Role/delete/id
+	@GetMapping("delete/{ids}")
+	public ORSResponse delete(@PathVariable long[] ids) {
+
+		ORSResponse res = new ORSResponse();
+
+		for (long id : ids) {
+			service.delete(id);
+			res.addMessage("role delete successfully");
 			res.setSuccess(true);
-
-			return res;
-			
 		}
 
-		// http://localhost:8080/Role/delete/id and multilple ids like id,id
-		@GetMapping("delete/{ids}")
-		public ORSResponse delete(@PathVariable long[] ids) {
+		return res;
+	}
 
-			ORSResponse res = new ORSResponse();
+	// http://localhost:8080/Role/get/id
+	@GetMapping("get/{id}")
+	public ORSResponse get(@PathVariable long id) {
 
-			for (long id : ids) {
-				service.delete(id);
-				res.addMessage("role delete successfully");
-				res.setSuccess(true);
-			}
+		ORSResponse res = new ORSResponse();
 
-			return res;
-			
+		RoleDTO dto = service.findById(id);
+
+		if (dto != null) {
+			res.setSuccess(true);
+			res.addData(dto);
 		}
 
-		// http://localhost:8080/Role/get/id
-		@GetMapping("get/{id}")
-		public ORSResponse get(@PathVariable long id) {
-
-			ORSResponse res = new ORSResponse();
-
-			RoleDTO dto = service.findById(id);
-
-			if (dto != null) {
-				res.setSuccess(true);
-				res.addData(dto);
-			}
-
-			return res;
-			
-		}
+		return res;
+	}
 
 }

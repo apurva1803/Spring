@@ -34,6 +34,6 @@ public class RoleService {
 	@Transactional(readOnly = true)
 	public RoleDTO findById(long id) {
 		
-		return findById(id);
+		return dao.findByPk(id);
 	}
 }

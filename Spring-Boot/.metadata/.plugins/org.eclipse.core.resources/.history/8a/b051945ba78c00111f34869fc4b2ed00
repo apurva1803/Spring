@@ -1,0 +1,27 @@
+package com.rays.form;
+
+import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+
+import com.rays.common.BaseForm;
+
+public class UserForm extends BaseForm{
+
+	@NotEmpty(message = "First Name is required")
+	private String firstName;
+	
+	@NotEmpty(message = "Last Name is required")
+	private String lastName;
+	
+	@NotEmpty(message = "Login is required")
+	private String login;
+	
+	@NotEmpty(message = "Password is required")
+	private String password;
+	
+	@NotEmpty(message = "Role Id is required")
+	private long roleId;
+	
+	@NotEmpty(message = "Role Name is required")
+	private String roleName;
+}

@@ -23,7 +23,7 @@ public class UserDTO extends BaseDTO{
 	private String password;
 	
 	@Column(name = "ROLEID")
-	private long roleId;
+	private Long roleId;
 	
 	@Column(name = "ROLENAME", length = 45)
 	private String roleName;
@@ -60,11 +60,11 @@ public class UserDTO extends BaseDTO{
 		this.password = password;
 	}
 
-	public long getRoleId() {
+	public Long getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(long roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 

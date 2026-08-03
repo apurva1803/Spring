@@ -1,5 +1,7 @@
 package com.rays.dto;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -8,24 +10,27 @@ import com.rays.common.BaseDTO;
 
 @Entity
 @Table(name = "st_user")
-public class UserDTO extends BaseDTO{
+public class UserDTO extends BaseDTO {
 
-	@Column(name = "FIRSTNAME", length = 45)
+	@Column(name = "FIRST_NAME", length = 50)
 	private String firstName;
-	
-	@Column(name = "LASTNAME", length = 45)
+
+	@Column(name = "LAST_NAME", length = 50)
 	private String lastName;
-	
-	@Column(name = "LOGIN", length = 45)
-	private String login;
-	
-	@Column(name = "PASSWORD", length = 45)
+
+	@Column(name = "LOGIN_ID", length = 50)
+	private String loginId;
+
+	@Column(name = "PASSWORD", length = 50)
 	private String password;
-	
-	@Column(name = "ROLEID")
+
+	@Column(name = "DOB")
+	private Date dob;
+
+	@Column(name = "ROLE_ID")
 	private Long roleId;
-	
-	@Column(name = "ROLENAME", length = 45)
+
+	@Column(name = "ROLE_NAME", length = 50)
 	private String roleName;
 
 	public String getFirstName() {
@@ -44,12 +49,12 @@ public class UserDTO extends BaseDTO{
 		this.lastName = lastName;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getLoginId() {
+		return loginId;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	public String getPassword() {
@@ -58,6 +63,14 @@ public class UserDTO extends BaseDTO{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 
 	public Long getRoleId() {
@@ -75,6 +88,5 @@ public class UserDTO extends BaseDTO{
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	
-	
+
 }

@@ -11,8 +11,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.rays.dto.RoleDTO;
 import com.rays.dto.UserDTO;
 
 @Repository
@@ -21,12 +23,18 @@ public class UserDAO {
 	@PersistenceContext
 	EntityManager entityManager;
 	
+	@Autowired
+	public RoleDAO roleDao;
+
+	public void populate(UserDTO dto) {
+		RoleDTO roleDto = roleDao.findByPk(dto.getRoleId());
+		dto.setRoleName(roleDto.getName());
+	}
+
 	public long add(UserDTO dto) {
-
-		entityManager.persist(dto); // persist method to insert
-
+		populate(dto);
+		entityManager.persist(dto);
 		return dto.getId();
-
 	}
 	
 	public void update(UserDTO dto) {
@@ -73,8 +81,8 @@ public class UserDAO {
 			if (dto.getLastName() != null && dto.getLastName().length() > 0) {
 				predicateList.add(builder.like(root.get("lastName"), dto.getLastName() + "%"));
 			}
-			if (dto.getLogin() != null &&dto.getFirstName().length() > 0) {
-				predicateList.add(builder.equal(root.get("login"), dto.getLogin()));
+			if (dto.getLoginId() != null &&dto.getFirstName().length() > 0) {
+				predicateList.add(builder.equal(root.get("loginId"), dto.getLoginId()));
 			}
 			if (dto.getPassword() != null && dto.getPassword().length() > 0) {
 				predicateList.add(builder.equal(root.get("password"), dto.getPassword()));
@@ -99,5 +107,31 @@ public class UserDAO {
 		
 		return list;
 
+	}
+	
+	public UserDTO findByUniqueColumn(String attribute, String value) {
+		
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<UserDTO> cq = builder.createQuery(UserDTO.class);
+		
+		Root<UserDTO> root = cq.from(UserDTO.class);
+		
+		Predicate condition = builder.equal(root.get(attribute), value);
+		
+		cq.where(condition);
+		
+		TypedQuery<UserDTO> tq = entityManager.createQuery(cq);
+		
+		List<UserDTO> list = tq.getResultList();
+		
+		UserDTO dto = null;
+		
+		if(list.size() == 1) {
+			dto = list.get(0);
+		}
+		
+		return dto;
+		
 	}
 }

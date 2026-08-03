@@ -1,4 +1,4 @@
-package com.rays.ctl;
+package com.rays.common;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-
-import com.rays.common.ORSResponse;
 
 public class BaseCtl {
 

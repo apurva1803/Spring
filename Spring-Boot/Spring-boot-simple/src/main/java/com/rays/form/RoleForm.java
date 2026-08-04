@@ -1,6 +1,6 @@
 package com.rays.form;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 import com.rays.common.BaseDTO;
 import com.rays.common.BaseForm;

@@ -1,0 +1,22 @@
+package com.rays.form;
+
+import com.rays.common.BaseForm;
+
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
+public class ProductForm extends BaseForm{
+
+	@NotEmpty(message = "productName is required")
+	private String productName;
+	
+	@NotNull(message = "price is required")
+	private Double price;
+	
+	@NotNull(message = "quantity is required")
+	private Integer quantity;
+	
+	@NotEmpty(message = "category is required")
+	private String category;
+}

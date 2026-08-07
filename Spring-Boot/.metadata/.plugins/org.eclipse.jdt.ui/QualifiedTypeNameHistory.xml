@@ -57,7 +57,7 @@
     <fullyQualifiedTypeName name="com.rays.dao.ProductDAO"/>
     <fullyQualifiedTypeName name="com.rays.common.BaseForm"/>
     <fullyQualifiedTypeName name="com.rays.common.BaseCtl"/>
-    <fullyQualifiedTypeName name="com.rays.dto.ProductDTO"/>
     <fullyQualifiedTypeName name="com.rays.form.ProductForm"/>
     <fullyQualifiedTypeName name="com.rays.service.ProductService"/>
+    <fullyQualifiedTypeName name="com.rays.dto.ProductDTO"/>
 </qualifiedTypeNameHistroy>

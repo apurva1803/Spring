@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rays.dao.UserDAO;
 import com.rays.dto.UserDTO;
+import com.rays.exception.DuplicateRecordException;
 
 @Service
 @Transactional
@@ -17,12 +18,35 @@ public class UserService {
 	@Autowired
 	UserDAO dao;
 	
+	@Transactional(readOnly = true)
+	public UserDTO findByLogin(String loginId) {
+		UserDTO dto = dao.findByUniqueColumn("loginId", loginId);
+
+		if (dto != null) {
+			return dto;
+		}
+
+		return null;
+	}
+	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void save(UserDTO dto) {
 		
+		UserDTO existDto = findByLogin(dto.getLoginId());
+		
 		if(dto.getId() != null && dto.getId() > 0) {
+			
+			if (existDto != null && dto.getId() != existDto.getId()) {
+				throw new DuplicateRecordException("loginId already exist");
+			}
+			
 			dao.update(dto);
 		}else {
+			
+			if (existDto != null) {
+				throw new DuplicateRecordException("loginId already exist");
+			}
+			
 			dao.add(dto);
 		}
 	}

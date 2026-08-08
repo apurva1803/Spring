@@ -1,0 +1,22 @@
+package com.rays.form;
+
+import com.rays.common.BaseForm;
+
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
+public class BookForm extends BaseForm{
+
+	@NotEmpty(message = "title is required")
+	private String title;
+	
+	@NotEmpty(message = "author is required")
+	private String author;
+	
+	@NotNull(message = "price is required")
+	private Double price;
+	
+	@NotNull(message = "publicationYear is required")
+	private Integer publicationYear;
+}
